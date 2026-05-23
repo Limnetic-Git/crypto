@@ -12,13 +12,18 @@ cd "$project_root"
 
 failed=0
 
-for test_file in tests/*.mojo; do
-	[ -e "$test_file" ] || continue
+test_list_file=$(mktemp)
+trap 'rm -f "$test_list_file"' EXIT INT TERM
+
+find tests -type f -name '*.mojo' | sort > "$test_list_file"
+
+while IFS= read -r test_file; do
+	[ -n "$test_file" ] || continue
 	echo "Running $test_file"
 	if ! mojo run -I src "$test_file"; then
 		failed=1
 	fi
-done
+done < "$test_list_file"
 
 if [ "$failed" -eq 0 ]; then
 	printf "🚀 All tests ${GREEN}passed!${NC}"
