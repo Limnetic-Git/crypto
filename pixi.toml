@@ -1,0 +1,17 @@
+[workspace]
+authors = ["Lukasz Czerniawski <l.czerniawski@icloud.com>"]
+channels = ["https://conda.modular.com/max", "conda-forge"]
+name = "crypto"
+description = "TODO"
+license = "MIT"
+platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
+readme = "README.md"
+version = "0.1.0"
+
+[tasks]
+build = "mojo package src/crypto -o crypto.mojopkg"
+test = "sh scripts/run_tests.sh"
+format = "mojo format src/crypto"
+
+[dependencies]
+mojo = ">=1.0.0b1,<2"

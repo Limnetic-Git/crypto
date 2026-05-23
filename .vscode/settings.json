@@ -1,0 +1,20 @@
+{
+  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "mojo.lsp.includeDirs": [
+    "src"
+  ],
+  "cSpell.words": [
+    "buflen",
+    "comptime",
+    "elif",
+    "fieldwise",
+    "getrandom",
+    "gettime",
+    "libc",
+    "nsec",
+    "repr",
+    "ssize",
+    "staticmethod",
+    "timespec"
+  ]
+}
