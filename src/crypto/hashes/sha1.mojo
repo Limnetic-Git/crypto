@@ -147,6 +147,7 @@ struct SHA1Digest:
     words. Use `to_bytes()` to export the digest as a 20-byte big-endian list
     or `to_hex()` to get a 40-character lowercase hexadecimal string.
     """
+
     comptime hex_chars = "0123456789abcdef"
 
     var h0: UInt32
