@@ -2,7 +2,7 @@
 authors = ["Lukasz Czerniawski <l.czerniawski@icloud.com>"]
 channels = ["https://conda.modular.com/max", "conda-forge"]
 name = "crypto"
-description = "TODO"
+description = "A Mojo cryptography library intended to cover the commonly used cryptographic algorithms."
 license = "MIT"
 platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 readme = "README.md"
