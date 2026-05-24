@@ -1,3 +1,5 @@
+from ..helpers import _rotate_left
+
 comptime _t: SIMD[DType.uint32, 64] = [
     0xD76AA478,
     0xE8C7B756,
@@ -84,11 +86,6 @@ def _h(x: UInt32, y: UInt32, z: UInt32) -> UInt32:
 @always_inline
 def _i(x: UInt32, y: UInt32, z: UInt32) -> UInt32:
     return y ^ (x | (~z))
-
-
-@always_inline
-def _rotate_left(x: UInt32, n: UInt32) -> UInt32:
-    return (x << n) | (x >> (32 - n))
 
 
 @always_inline
@@ -306,6 +303,7 @@ struct MD5Digest:
     Represents a 128-bit MD5 digest, stored internally as four 32-bit state words.
     Provides methods to export the digest as raw bytes or hexadecimal string.
     """
+
     comptime hex_chars = "0123456789abcdef"
 
     var a: UInt32
@@ -323,25 +321,11 @@ struct MD5Digest:
         """
         var out = List[UInt8](capacity=16)
 
-        out.append(UInt8(self.a & 0xFF))
-        out.append(UInt8((self.a >> 8) & 0xFF))
-        out.append(UInt8((self.a >> 16) & 0xFF))
-        out.append(UInt8((self.a >> 24) & 0xFF))
-
-        out.append(UInt8(self.b & 0xFF))
-        out.append(UInt8((self.b >> 8) & 0xFF))
-        out.append(UInt8((self.b >> 16) & 0xFF))
-        out.append(UInt8((self.b >> 24) & 0xFF))
-
-        out.append(UInt8(self.c & 0xFF))
-        out.append(UInt8((self.c >> 8) & 0xFF))
-        out.append(UInt8((self.c >> 16) & 0xFF))
-        out.append(UInt8((self.c >> 24) & 0xFF))
-
-        out.append(UInt8(self.d & 0xFF))
-        out.append(UInt8((self.d >> 8) & 0xFF))
-        out.append(UInt8((self.d >> 16) & 0xFF))
-        out.append(UInt8((self.d >> 24) & 0xFF))
+        for l in [self.a, self.b, self.c, self.d]:
+            out.append(UInt8(l & 0xFF))
+            out.append(UInt8((l >> 8) & 0xFF))
+            out.append(UInt8((l >> 16) & 0xFF))
+            out.append(UInt8((l >> 24) & 0xFF))
 
         return out^
 
