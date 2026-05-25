@@ -2,6 +2,7 @@
 
 A Mojo cryptography library intended to cover the commonly used cryptographic algorithms.
 
+> [!WARNING]
 > 🚧 **Work in progress:** This library is actively being built out, and the plan is to implement all standard crypto algorithms over time.
 
 ## Overview
