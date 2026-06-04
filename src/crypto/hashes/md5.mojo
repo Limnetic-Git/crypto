@@ -1,4 +1,4 @@
-from ..helpers import _rotate_left
+from ..helpers import _rotate_left, _to_hex
 
 comptime _t: SIMD[DType.uint32, 64] = [
     0xD76AA478,
@@ -304,8 +304,6 @@ struct MD5Digest:
     Provides methods to export the digest as raw bytes or hexadecimal string.
     """
 
-    comptime hex_chars = "0123456789abcdef"
-
     var a: UInt32
     var b: UInt32
     var c: UInt32
@@ -336,12 +334,5 @@ struct MD5Digest:
         Returns:
             String: A 32-character lowercase hex string representation of the digest.
         """
-        var out = String()
         var bytes = self.to_bytes()
-
-        for i in range(len(bytes)):
-            var v = Int(bytes[i])
-            out += self.hex_chars[v >> 4]
-            out += self.hex_chars[v & 0x0F]
-
-        return out
+        return _to_hex(bytes)

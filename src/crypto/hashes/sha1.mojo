@@ -1,4 +1,4 @@
-from ..helpers import _rotate_left
+from ..helpers import _rotate_left, _to_hex
 
 comptime k0: UInt32 = 0x5A827999  # 0 <= t <= 19
 comptime k1: UInt32 = 0x6ED9EBA1  # 20 <= t <= 39
@@ -148,8 +148,6 @@ struct SHA1Digest:
     or `to_hex()` to get a 40-character lowercase hexadecimal string.
     """
 
-    comptime hex_chars = "0123456789abcdef"
-
     var h0: UInt32
     var h1: UInt32
     var h2: UInt32
@@ -181,12 +179,5 @@ struct SHA1Digest:
         Returns:
             String: A 40-character lowercase hex string representation of the digest.
         """
-        var out = String()
         var bytes = self.to_bytes()
-
-        for byte in bytes:
-            var v = Int(byte)
-            out += self.hex_chars[v >> 4]
-            out += self.hex_chars[v & 0x0F]
-
-        return out
+        return _to_hex(bytes)
