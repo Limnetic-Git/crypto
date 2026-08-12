@@ -3,7 +3,7 @@
 !.pixi/config.toml
 
 # Build artifact
-crypto.mojopkg
+crypto.mojoc
 output
 
 # MacOS
