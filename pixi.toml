@@ -6,7 +6,7 @@ description = "A Mojo cryptography library intended to cover the commonly used c
 license = "MIT"
 platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 readme = "README.md"
-version = "0.1.0"
+version = "0.2.0"
 
 [tasks]
 build = "mojo package src/crypto -o crypto.mojopkg"
@@ -15,4 +15,4 @@ format = "mojo format src/crypto"
 build_rattler = "rattler-build build --recipe conda.recipe/recipe.yaml -c conda-forge -c https://conda.modular.com/max -c https://repo.prefix.dev/modular-community"
 
 [dependencies]
-mojo = ">=1.0.0b1,<2"
+mojo = ">=1.0.0,<2"

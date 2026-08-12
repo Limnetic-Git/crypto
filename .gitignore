@@ -5,3 +5,6 @@
 # Build artifact
 crypto.mojopkg
 output
+
+# MacOS
+.DS_Store

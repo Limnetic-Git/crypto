@@ -171,9 +171,11 @@ def md5(data: Span[UInt8, ...]) -> MD5Digest:
 
     var zero_bytes_padding = (56 - (len(data) + 1)) % 64
 
-    # Pad input data with 1 and 0s
     var message = List[UInt8]()
-    message.extend(data)
+    for i in range(len(data)):
+        message.append(data[i])
+
+    # Pad input data with 1 and 0s
     message.append(0x80)
     for _ in range(zero_bytes_padding):
         message.append(0x00)

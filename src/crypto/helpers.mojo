@@ -12,8 +12,8 @@ def _to_hex(bytes: List[UInt8]) -> String:
 
     for byte in bytes:
         var v = Int(byte)
-        out += hex_chars[v >> 4]
-        out += hex_chars[v & 0x0F]
+        out += hex_chars[codepoint=v >> 4]
+        out += hex_chars[codepoint=v & 0x0F]
 
     return out
 
