@@ -44,7 +44,7 @@ This fetches the latest version and makes it immediately available for import.
 ### Hashing
 
 ```mojo
-from crypto.hashes import md5, sha1
+from crypto.hashes import md5, sha1, sha256
 
 def main() raises:
 	var md5_digest = md5("abc".as_bytes())
